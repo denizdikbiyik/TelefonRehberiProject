@@ -1,0 +1,38 @@
+﻿@model TelefonRehberi.Models.Department
+
+@{
+    ViewData["Title"] = "Departman Detayları";
+}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.js"></script>
+<section class="ab-info-main py-md-5">
+    <div class="container py-md-3">
+        <h5 class="shop_w3 text-capitalize">
+            @Model.DepartmentName Departmanında Çalışanlar
+        </h5>
+        <br />
+        <div class="card-deck">
+            @if (Model.Workers.Count == 0)
+            {<text>Bu departmanda kayıtlı çalışan bulunmamaktadır.</text>}
+        else
+        {
+            @foreach (var worker in Model.Workers)
+            {
+                <div class="col-sm-3" style="margin-bottom:20px">
+                    <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => worker.WorkerFirstName) @Html.DisplayFor(modelItem => worker.WorkerLastName)</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => worker.WorkerPhoneNumber)</h6>
+                        <a asp-controller="Workers" asp-action="Details" asp-route-id="@worker.WorkerId">Detaylar</a>
+                    </div>
+                    </div>
+                </div>
+            }
+        }
+        </div>
+        <br /><br />
+    </div>     
+</section>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

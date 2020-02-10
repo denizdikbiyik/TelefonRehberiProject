@@ -1,0 +1,61 @@
+﻿@model TelefonRehberi.Models.Worker
+@{
+    ViewData["Title"] = "Çalışan Sil";
+}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.js"></script>
+<section class="ab-info-main py-md-5">
+    <div class="container py-md-3">
+        <h3>Çalışanı silmek istediğinize emin misiniz?</h3>
+        <div>
+            <hr />
+            <div class="col-lg-8 mt-lg-0 mt-5 single-right-left simpleCart_shelfItem">
+                <div class="d-sm-flex justify-content-between">
+                    <div class="occasional">
+                        <ul class="single_specific">
+                            <li>
+                                <h3>Adı Soyadı: @Html.Raw(Model.WorkerFirstName) @Html.Raw(Model.WorkerLastName)</h3>
+                            <li>
+                            <li>
+                                <h3>Telefon Numarası: @Html.Raw(Model.WorkerPhoneNumber)</h3>
+                            <li>
+                            <li>
+                                <h3>
+                                    Çalıştığı Departman:
+                                    @if (Model.Department == null)
+                                    {<text>Departman Bilgisi Yok</text>}
+                                else
+                                {
+                                    <a asp-controller="Departments" asp-action="Details" asp-route-id="@Model.DepartmentId">@Html.DisplayFor(model => model.Department.DepartmentName)</a>
+                                }
+                                </h3>
+                            <li>
+                            <li>
+                                <h3>
+                                    Bağlı Olduğu Yönetici:
+                                    @if (Model.WorkerManager == null)
+                                    {<text>Yönetici Yok</text> }
+                                else
+                                {
+                                    <a asp-controller="Workers" asp-action="Details" asp-route-id="@Model.WorkerManagerId">@Html.DisplayFor(model => model.WorkerManager.WorkerFirstName) @Html.DisplayFor(model => model.WorkerManager.WorkerLastName)</a>
+                                }
+                                </h3>
+                            <li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <br />
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="WorkerId" />
+                    <input type="submit" value="Sil" class="btn btn-danger" /> |
+                    <a asp-action="Index">Listeye Dön</a>
+                </form>
+            </div>
+        </div>
+</section>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    </script>
+}

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TelefonRehberi.Models.Worker>
+@{
+    ViewData["Title"] = "Çalışanlar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.js"></script>
+<section class="ab-info-main py-md-5">
+    <div class="container py-md-3">
+        <h5 class="shop_w3 text-capitalize">
+            Tüm Çalışanlar
+        </h5>
+        <br />
+        <p>
+            <a asp-action="Create">Yeni Çalışan Ekle</a>
+        </p>
+        <br />
+        <div class="card-deck">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-3" style="margin-bottom:20px">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.WorkerFirstName) @Html.DisplayFor(modelItem => item.WorkerLastName)</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.WorkerPhoneNumber)</h6>
+                            @*<p class="card-text">@Html.DisplayFor(modelItem => item.WorkerPhoneNumber)</p>*@
+                            <a asp-action="Edit" asp-route-id="@item.WorkerId">Düzenle</a> |
+                            <a asp-action="Details" asp-route-id="@item.WorkerId">Detaylar</a> |
+                            <a asp-action="Delete" asp-route-id="@item.WorkerId">Sil</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <br /><br />
+        <a asp-action="Index">Listeye Dön</a>
+    </div>
+</section>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

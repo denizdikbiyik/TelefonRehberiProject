@@ -1,0 +1,226 @@
+﻿<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+    <html lang="zxx">
+    <head>
+        <title>Çalışan Telefon Rehberi</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <script src="~/js/jquery-2.2.3.min.js"></script>
+        <script>
+            addEventListener("load", function () {
+                setTimeout(hideURLbar, 0);
+            }, false);
+            function hideURLbar() {
+                window.scrollTo(0, 1);
+            }
+        </script>
+        <!-- Custom Theme files -->
+        <link href="~/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+        <!-- shop css -->
+        <link href="~/css/shop.css" type="text/css" rel="stylesheet" media="all">
+        <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+        <!-- Owl-Carousel-CSS -->
+        <link href="~/css/style.css" type="text/css" rel="stylesheet" media="all">
+        <!-- font-awesome icons -->
+        <link href="~/css/fontawesome-all.min.css" rel="stylesheet">
+        <!-- //Custom Theme files -->
+        <!-- online-fonts -->
+        <link href="//fonts.googleapis.com/css?family=Elsie+Swash+Caps:400,900" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+        <!-- //online-fonts -->
+    </head>
+    <body>
+        <!-- header -->
+        <header>
+            <div class="container">
+                <!-- top nav -->
+                <nav class="top_nav d-flex pt-5 pb-1">
+                    <!-- logo -->
+                    <h1>
+                        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                            TelefonRehberi
+                        </a>
+                    </h1>
+                    <!-- //logo -->
+                    <div class="w3ls_right_nav ml-auto d-flex">
+                        <div class="w3ls_right_nav ml-auto d-flex">
+                            @Html.Partial("_LoginPartial")
+                        </div>
+                    </div>
+                </nav>
+                <!-- //top nav -->
+                <!-- bottom nav -->
+                @*<nav class="navbar navbar-expand-lg navbar-light justify-content-center">
+                </nav>*@
+                <!-- //bottom nav -->
+            </div>
+            <!-- //header container -->
+        </header>
+        <!-- //header -->
+        <section class="tabs_pro py-md-0 pt-sm-5 pb-lg-4">
+            <nav class="container">
+                <ul id="clothing-nav" class="nav nav-tabs tabs-style-line" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                    </li>
+                    <li class="dropdown">
+                        <button class="nav-link active" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Departmanlara Göre Çalışanlar
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <ul>
+                                @(await Component.InvokeAsync("DepartmentMenu"))
+                            </ul>
+                        </div>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Departments" asp-action="Index">Departman Düzenle</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Workers" asp-action="Index">Tüm Çalışanlar Listesi</a>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Workers" asp-action="ForAdmin">Çalışan Düzenle</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" asp-action="Privacy">Gizlilik</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Home" asp-action="Connect">İletişim</a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+        @RenderBody()
+        <footer>
+            <div class="footerv2-w3ls">
+                <div class="footer-w3lagile-innerr">
+                    <div class="container-fluid">
+                        <br /><br /><br />
+                        <div class="row  footer-v2grids w3-agileits">
+                            <div class="container">
+                                <p>
+                                    © 2020 Deniz Dikbıyık | Tasarım:
+                                    <a href="http://w3layouts.com" class="text-secondary"> W3layouts.</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="~/js/responsiveslides.min.js"></script>
+        <script>
+            // You can also use "$(window).load(function() {"
+            $(function () {
+                // Slideshow 4
+                $("#slider3").responsiveSlides({
+                    auto: false,
+                    pager: true,
+                    nav: false,
+                    speed: 500,
+                    namespace: "callbacks",
+                    before: function () {
+                        $('.events').append("<li>before event fired.</li>");
+                    },
+                    after: function () {
+                        $('.events').append("<li>after event fired.</li>");
+                    }
+                });
+            });
+        </script>
+        <!-- // Banner Responsiveslides -->
+        <!-- Product slider Owl-Carousel-JavaScript -->
+        <script src="~/js/owl.carousel.js"></script>
+        <script>
+            var owl = $('.owl-carousel');
+            owl.owlCarousel({
+                items: 4,
+                loop: false,
+                margin: 10,
+                autoplay: false,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: false,
+                responsive: {
+                    320: {
+                        items: 1,
+                    },
+                    568: {
+                        items: 2,
+                    },
+                    991: {
+                        items: 3,
+                    },
+                    1050: {
+                        items: 4
+                    }
+                }
+            });
+        </script>
+        <!-- smooth dropdown -->
+        <script>
+            $(document).ready(function () {
+                $('ul li.dropdown').hover(function () {
+                    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
+                }, function () {
+                    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(200);
+                });
+            });
+        </script>
+        <!-- //smooth dropdown -->
+        <!-- script for password match -->
+        <script>
+            window.onload = function () {
+                document.getElementById("password1").onchange = validatePassword;
+                document.getElementById("password2").onchange = validatePassword;
+            }
+            function validatePassword() {
+                var pass2 = document.getElementById("password2").value;
+                var pass1 = document.getElementById("password1").value;
+                if (pass1 != pass2)
+                    document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+                else
+                    document.getElementById("password2").setCustomValidity('');
+                //empty string means no validation error
+            }
+        </script>
+        <script src="~/js/move-top.js"></script>
+        <script src="~/js/easing.js"></script>
+        <script>
+            jQuery(document).ready(function ($) {
+                $(".scroll").click(function (event) {
+                    event.preventDefault();
+
+                    $('html,body').animate({
+                        scrollTop: $(this.hash).offset().top
+                    }, 1000);
+                });
+            });
+        </script>
+        <!-- //end-smooth-scrolling -->
+        <!-- smooth-scrolling-of-move-up -->
+        <script>
+            $(document).ready(function () {
+                $().UItoTop({
+                    easingType: 'easeOutQuart'
+                });
+            });
+        </script>
+        <script src="~/js/SmoothScroll.min.js"></script>
+        <!-- //smooth-scrolling-of-move-up -->
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="~/js/bootstrap.js"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
+    </html>

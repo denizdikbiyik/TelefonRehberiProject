@@ -1,0 +1,57 @@
+﻿@model TelefonRehberi.Models.Worker
+@{
+    ViewData["Title"] = "Çalışan Detayları";
+}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.1.92/jodit.min.js"></script>
+<section class="ab-info-main py-md-5">
+        <div class="container">
+            <div class="row my-sm-5">
+                <div class="col-lg-8 mt-lg-0 mt-5 single-right-left simpleCart_shelfItem">
+                    <h5 class="shop_w3 text-capitalize">
+                        "@Html.DisplayFor(model => model.WorkerFirstName) @Html.DisplayFor(model => model.WorkerLastName)" Detayları
+                    </h5>
+                    <br />
+                    <div class="d-sm-flex justify-content-between">
+                        <div class="occasional">
+                            <ul class="single_specific">
+                                <li>
+                                    <h3>Telefon Numarası: @Html.Raw(Model.WorkerPhoneNumber)</h3>
+                                <li>
+                                <li>
+                                    <h3>
+                                        Çalıştığı Departman:
+                                        @if (Model.Department == null)
+                                            {<text>Departman Bilgisi Yok</text>}
+                                        else
+                                        {
+                                            <a asp-controller="Departments" asp-action="Details" asp-route-id="@Model.DepartmentId">@Html.DisplayFor(model => model.Department.DepartmentName)</a>
+                                        }
+                                    </h3>
+                                <li>
+                                <li>
+                                    <h3>
+                                        Bağlı Olduğu Yönetici:
+                                        @if (Model.WorkerManager == null)
+                                            {<text>Yönetici Yok</text> }
+                                        else
+                                        {
+                                            <a asp-controller="Workers" asp-action="Details" asp-route-id="@Model.WorkerManagerId">@Html.DisplayFor(model => model.WorkerManager.WorkerFirstName) @Html.DisplayFor(model => model.WorkerManager.WorkerLastName)</a>
+                                        }
+                                    </h3>
+                                <li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br /><br />
+                    <a asp-action="Index">Listeye Dön</a>
+                    <br />
+                </div>
+            </div>
+        </div>
+</section>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    </script>
+}
